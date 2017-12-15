@@ -183,6 +183,9 @@ Trader.prototype.buy = function(amount, price, callback) {
       } else if (err && err.message === 'DUST_TRADE_DISALLOWED_MIN_VALUE_50K_SAT') {
         callback(null, 'dummyOrderId');
         return;
+      } else if (err && err.message === 'MIN_TRADE_REQUIREMENT_NOT_MET') {
+        log.error('Error buy ' , 'MIN_TRADE_REQUIREMENT_NOT_MET', err );
+        return;
       }
       log.error('unable to buy:', {err: err, result: result});
       return this.retry(this.buy, args);
