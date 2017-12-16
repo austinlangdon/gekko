@@ -184,6 +184,7 @@ Trader.prototype.buy = function(amount, price, callback) {
         callback(null, 'dummyOrderId');
         return;
       } else if (err && err.message === 'MIN_TRADE_REQUIREMENT_NOT_MET') {
+        callback(null, 'dummyOrderId');
         log.error('Error buy ' , 'MIN_TRADE_REQUIREMENT_NOT_MET', err );
         return;
       }
